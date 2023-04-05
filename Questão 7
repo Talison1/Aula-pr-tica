@@ -1,0 +1,17 @@
+def extended_euclid(a, b):
+    if b == 0:
+        return (a, 1, 0)
+    else:
+        (d, s, t) = extended_euclid(b, a % b)
+        return (d, t, s - (a // b) * t)
+
+a = int(input("Digite o primeiro número inteiro: "))
+b = int(input("Digite o segundo número inteiro: "))
+
+(d, s, t) = extended_euclid(a, b)
+
+if d != 1:
+    print("Não existe inverso de", a, "mod", b)
+else:
+    inverso = s % b
+    print("O inverso de", a, "mod", b, "é:", inverso)
