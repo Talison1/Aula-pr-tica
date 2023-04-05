@@ -1,0 +1,14 @@
+def prime_factors(num):
+    factors = []
+    divisor = 2
+    while divisor <= num:
+        if num % divisor == 0:
+            factors.append(divisor)
+            num //= divisor
+        else:
+            divisor += 1
+    return factors
+
+num = int(input("Digite um número inteiro: "))
+factors = prime_factors(num)
+print("Os fatores primos de", num, "são:", factors)
