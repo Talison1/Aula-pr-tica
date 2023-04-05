@@ -1,0 +1,11 @@
+def mdc(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+a = int(input("Digite o primeiro número inteiro: "))
+b = int(input("Digite o segundo número inteiro: "))
+
+mdc_ab = mdc(a, b)
+
+print("O mdc de", a, "e", b, "é:", mdc_ab)
