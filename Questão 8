@@ -1,0 +1,18 @@
+def extended_euclid(a, b):
+    if b == 0:
+        return (a, 1, 0)
+    else:
+        (d, s, t) = extended_euclid(b, a % b)
+        return (d, t, s - (a // b) * t)
+
+a = int(input("Digite o coeficiente a: "))
+b = int(input("Digite o coeficiente b: "))
+m = int(input("Digite o módulo m: "))
+
+(d, s, t) = extended_euclid(a, m)
+
+if d != 1:
+    print("A congruência não tem solução.")
+else:
+    x = (s * b) % m
+    print("A solução da congruência", a, "x ≡", b, "mod", m, "é x =", x)
