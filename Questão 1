@@ -1,23 +1,18 @@
-#include <stdio.h>
+num = int(input("Digite um número inteiro: "))
 
-int main() {
-    int num, i, flag = 0;
-    
-    printf("Digite um número inteiro positivo: ");
-    scanf("%d", &num);
-    
-    // Verifica se o número é divisível por algum número entre 2 e num/2
-    for (i = 2; i <= num/2; i++) {
-        if (num % i == 0) {
-            flag = 1;
-            break;
-        }
-    }
-    
-    if (flag == 0)
-        printf("%d é um número primo.", num);
-    else
-        printf("%d não é um número primo.", num);
-    
-    return 0;
-}
+# O número 1 não é primo, então já podemos retornar "False" se o usuário digitou 1
+if num == 1:
+    print("O número 1 não é primo.")
+    is_prime = False
+else:
+    # Percorremos todos os números de 2 até a raiz quadrada do número, pois não é necessário verificar mais que isso
+    for i in range(2, int(num ** 0.5) + 1):
+        # Se o número é divisível por i, então não é primo
+        if num % i == 0:
+            print("O número", num, "não é primo.")
+            is_prime = False
+            break
+    else:
+        # Se o loop terminou sem encontrar nenhum divisor, o número é primo
+        print("O número", num, "é primo.")
+        is_prime = True
