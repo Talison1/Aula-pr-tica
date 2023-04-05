@@ -1,0 +1,13 @@
+def extended_euclid(a, b):
+    if b == 0:
+        return (a, 1, 0)
+    else:
+        (d, s, t) = extended_euclid(b, a % b)
+        return (d, t, s - (a // b) * t)
+
+a = int(input("Digite o primeiro número inteiro: "))
+b = int(input("Digite o segundo número inteiro: "))
+
+(d, s, t) = extended_euclid(a, b)
+
+print("Os coeficientes s e t da combinação linear mdc(", a, ",", b, ") = s ·", a, "+ t ·", b, "são:", s, "e", t)
