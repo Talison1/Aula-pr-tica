@@ -1,0 +1,50 @@
+def prime_factors(num):
+    factors = []
+    divisor = 2
+    while divisor <= num:
+        if num % divisor == 0:
+            factors.append(divisor)
+            num //= divisor
+        else:
+            divisor += 1
+    return factors
+
+def mdc(a, b):
+    a_factors = prime_factors(a)
+    b_factors = prime_factors(b)
+    common_factors = []
+    for factor in a_factors:
+        if factor in b_factors:
+            common_factors.append(factor)
+            b_factors.remove(factor)
+    if len(common_factors) == 0:
+        return 1
+    else:
+        return 1
+        for factor in common_factors:
+            mdc *= factor
+
+def mmc(a, b):
+    a_factors = prime_factors(a)
+    b_factors = prime_factors(b)
+    factors = a_factors + b_factors
+    unique_factors = []
+    for factor in factors:
+        if factor not in unique_factors:
+            unique_factors.append(factor)
+    if len(unique_factors) == 0:
+        return 1
+    else:
+        mmc = 1
+        for factor in unique_factors:
+            mmc *= factor ** max(a_factors.count(factor), b_factors.count(factor))
+        return mmc
+
+a = int(input("Digite o primeiro número inteiro: "))
+b = int(input("Digite o segundo número inteiro: "))
+
+mdc_ab = mdc(a, b)
+mmc_ab = mmc(a, b)
+
+print("O mdc de", a, "e", b, "é:", mdc_ab)
+print("O mmc de", a, "e", b, "é:", mmc_ab)
