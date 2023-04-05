@@ -1,0 +1,39 @@
+def gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
+
+def extended_euclid(a, b):
+    if b == 0:
+        return (a, 1, 0)
+    else:
+        (d, s, t) = extended_euclid(b, a % b)
+        return (d, t, s - (a // b) * t)
+
+a1 = int(input("Digite o coeficiente a1: "))
+b1 = int(input("Digite o coeficiente b1: "))
+m1 = int(input("Digite o módulo m1: "))
+a2 = int(input("Digite o coeficiente a2: "))
+b2 = int(input("Digite o coeficiente b2: "))
+m2 = int(input("Digite o módulo m2: "))
+a3 = int(input("Digite o coeficiente a3: "))
+b3 = int(input("Digite o coeficiente b3: "))
+m3 = int(input("Digite o módulo m3: "))
+
+if gcd(m1, gcd(m2, m3)) != 1:
+    print("Os módulos não são coprimos.")
+else:
+    M = m1 * m2 * m3
+    M1 = M // m1
+    M2 = M // m2
+    M3 = M // m3
+    (d1, s1, t1) = extended_euclid(M1, m1)
+    (d2, s2, t2) = extended_euclid(M2, m2)
+    (d3, s3, t3) = extended_euclid(M3, m3)
+    x = (a1 * M1 * s1 + a2 * M2 * s2 + a3 * M3 * s3) % M
+    print("A solução única das congruências:")
+    print(a1, "x ≡", b1, "mod", m1)
+    print(a2, "x ≡", b2, "mod", m2)
+    print(a3, "x ≡", b3, "mod", m3)
+    print("é x =", x)
