@@ -1,0 +1,46 @@
+def gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
+
+def extended_euclid(a, b):
+    if b == 0:
+        return (a, 1, 0)
+    else:
+        (d, s, t) = extended_euclid(b, a % b)
+        return (d, t, s - (a // b) * t)
+
+n = int(input("Digite o número de congruências: "))
+a = []
+b = []
+m = []
+
+for i in range(n):
+    ai = int(input("Digite o coeficiente a" + str(i+1) + ": "))
+    bi = int(input("Digite o coeficiente b" + str(i+1) + ": "))
+    mi = int(input("Digite o módulo m" + str(i+1) + ": "))
+    a.append(ai)
+    b.append(bi)
+    m.append(mi)
+
+if len(set(m)) != n:
+    print("Os módulos não são coprimos.")
+else:
+    M = 1
+    Mi = []
+    s = []
+    for i in range(n):
+        M *= m[i]
+    for i in range(n):
+        Mi.append(M // m[i])
+        (d, si, ti) = extended_euclid(Mi[i], m[i])
+        s.append(si % m[i])
+    x = 0
+    for i in range(n):
+        x += b[i] * s[i] * Mi[i]
+    x %= M
+    print("A solução única das congruências:")
+    for i in range(n):
+        print(a[i], "x ≡", b[i], "mod", m[i])
+    print("é x =", x)
